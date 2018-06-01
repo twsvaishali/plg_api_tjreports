@@ -8,7 +8,7 @@
     <authorUrl>www.techjoomla.com</authorUrl>
     <copyright>Techjoomla. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <description>Tj-Reports API plugin</description>
+    <description>PLG_API_REPORTS_DESCRIPTION</description>
     <files>
         <filename plugin="reports">reports.php</filename>
         <folder>reports</folder>

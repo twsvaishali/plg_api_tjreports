@@ -30,6 +30,8 @@ class ReportsApiResourceReport extends ApiResource
 		{
 			ApiError::raiseError(403, "Not authorised", 'APIUnauthorisedException');
 		}
+		// Load language files
+		$lang = JFactory::getLanguage();
 
 		$app         = JFactory::getApplication();
 		$jinput      = $app->input;
@@ -38,7 +40,7 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!isset($reportName))
 		{
-			ApiError::raiseError(500, "Please enter report name", 'APIValidationException');
+			ApiError::raiseError(500, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
 		}
 
 		$reportFilters  = ($formData->get('filters'))?$formData->get('filters'):[];
@@ -49,11 +51,9 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!class_exists($className))
 		{
-			ApiError::raiseError(500, "Please enter valid report name", 'APIValidationException');
+			ApiError::raiseError(500, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
 		}
 
-		// Load language files
-		$lang = JFactory::getLanguage();
 		$lang->load('com_tjreports', JPATH_ADMINISTRATOR, 'en-GB', true);
 		$lang->load('plg_tjreports_' . $reportName, JPATH_SITE . "/plugins/tjreports/" . $reportName, 'en-GB', true);
 

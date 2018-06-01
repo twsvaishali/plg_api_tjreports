@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
 class ReportsApiResourceFilters extends ApiResource
 {
 	/**
-	 * Function save report.
+	 * Function get filters data
 	 *
 	 * @return boolean
 	 */
