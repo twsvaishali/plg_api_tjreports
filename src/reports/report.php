@@ -25,14 +25,14 @@ class ReportsApiResourceReport extends ApiResource
 	 */
 	public function post()
 	{
-		$app         = JFactory::getApplication();
-		$jinput      = $app->input;
-		$formData    = $jinput->post;
-		$reportName  = $app->input->getString('id');
+		$app        = JFactory::getApplication();
+		$jinput     = $app->input;
+		$formData   = $jinput->post;
+		$reportName = $app->input->getString('id');
 
 		if (empty($reportName))
 		{
-			$reportName  = $formData->getString('report');
+			$reportName = $formData->getString('report');
 		}
 
 		if (!isset($reportName))
@@ -40,9 +40,8 @@ class ReportsApiResourceReport extends ApiResource
 			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
 		}
 
-		$reportFilters  = ($formData->get('filters'))?$formData->get('filters'):[];
-		$reportCols  = ($formData->get('colToshow'))?$formData->get('colToshow'):[];
-
+		// Create object of tjreports plugin class
+		
 		JLoader::import('plugins.tjreports.' . $reportName . "." . $reportName, JPATH_SITE);
 		$className = 'TjreportsModel' . ucfirst($reportName);
 
@@ -51,18 +50,22 @@ class ReportsApiResourceReport extends ApiResource
 			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
 		}
 
+		$reportPlugin = new $className;
+		
 		// Load language files
 		$lang = JFactory::getLanguage();
 		$lang->load('com_tjreports', JPATH_ADMINISTRATOR, 'en-GB', true);
 		$lang->load('plg_tjreports_' . $reportName, JPATH_SITE . "/plugins/tjreports/" . $reportName, 'en-GB', true);
 
-		$reportPlugin = new $className;
-
+		// Get filters and cols
+		$reportFilters = ($formData->get('filters')) ? $formData->get('filters') : [];
+		$reportCols    = ($formData->get('colToshow')) ? $formData->get('colToshow') : [];
+		
 		$reportPlugin->setState('filters', $reportFilters);
 		$reportPlugin->setState('colToshow', $reportCols);
-
+		
+		// Get results and errors if any
 		$report = $reportPlugin->getItems();
-
 		$errors = $reportPlugin->getTJRMessages();
 
 		if (!empty($errors))
