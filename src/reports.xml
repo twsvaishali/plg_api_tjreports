@@ -6,12 +6,13 @@
     <author>Techjoomla</author>
     <authorEmail>extensions@techjoomla.com</authorEmail>
     <authorUrl>www.techjoomla.com</authorUrl>
-    <copyright>Techjoomla. All rights reserved.</copyright>
+    <copyright>PLG_API_REPORTS_COPYRIGHT</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <description>PLG_API_REPORTS_DESCRIPTION</description>
     <files>
         <filename plugin="reports">reports.php</filename>
         <folder>reports</folder>
+        <folder>language</folder>
     </files>
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.plg_api_reports.ini</language>

@@ -27,12 +27,12 @@ class ReportsApiResourceReport extends ApiResource
 		$app         = JFactory::getApplication();
 		$jinput      = $app->input;
 		$formData    = $jinput->post;
-		$reportName  = $app->input->get('id');
+		$reportName  = $app->input->getString('id');
 
-		if (empty($reportName)) {
-			$reportName  = $formData->get('report');
+		if (empty($reportName))
+		{
+			$reportName  = $formData->getString('report');
 		}
-
 
 		if (!isset($reportName))
 		{
