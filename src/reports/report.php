@@ -69,6 +69,7 @@ class ReportsApiResourceReport extends ApiResource
 			ApiError::raiseError(400, $errors[0], 'APIValidationException');
 		}
 
+		// @TODO Handle else condition first to reduce nesting
 		if (!empty($reportCols))
 		{
 			foreach ($report as $key => $value)
