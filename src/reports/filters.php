@@ -26,8 +26,13 @@ class ReportsApiResourceFilters extends ApiResource
 	public function get()
 	{
 		$app         = JFactory::getApplication();
-		$jinput      = $app->input->get;
-		$reportName  = $jinput->get('report');
+		$jinput      = $app->input;
+		$reportName  = $jinput->getString('id');
+
+		if (!isset($reportName))
+		{
+			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
+		}
 
 		JLoader::import('plugins.tjreports.' . $reportName . "." . $reportName, JPATH_SITE);
 		$className = 'TjreportsModel' . ucfirst($reportName);
