@@ -35,13 +35,9 @@ class PlgAPIReports extends ApiPlugin
 
 		// Set resource path
 		ApiResource::addIncludePath(dirname(__FILE__) . '/reports');
+
 		// Load language files
 		$lang = JFactory::getLanguage();
-		$lang->load('plg_api_reports' , JPATH_SITE . "/plugins/api/reports/" , 'en-GB', true);
-
-
-		// Set the resource to be public
-		$this->setResourceAccess('report', 'public', 'post');
-		$this->setResourceAccess('filters', 'public', 'get');
+		$lang->load('plg_api_reports', JPATH_SITE . "/plugins/api/reports/", 'en-GB', true);
 	}
 }

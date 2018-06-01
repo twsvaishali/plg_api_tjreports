@@ -25,13 +25,6 @@ class ReportsApiResourceFilters extends ApiResource
 	 */
 	public function get()
 	{
-		$user = JFactory::getUser();
-
-		if (!$user->id)
-		{
-			ApiError::raiseError(403, "Not authorised", 'APIUnauthorisedException');
-		}
-
 		$app         = JFactory::getApplication();
 		$jinput      = $app->input->get;
 		$reportName  = $jinput->get('report');
