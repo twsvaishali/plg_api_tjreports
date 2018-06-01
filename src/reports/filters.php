@@ -30,8 +30,14 @@ class ReportsApiResourceFilters extends ApiResource
 		$reportName  = $jinput->get('report');
 
 		JLoader::import('plugins.tjreports.' . $reportName . "." . $reportName, JPATH_SITE);
-		$classname = 'TjreportsModel' . ucfirst($reportName);
-		$reportPlugin = new $classname;
+		$className = 'TjreportsModel' . ucfirst($reportName);
+
+		if (!class_exists($className))
+		{
+			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
+		}
+
+		$reportPlugin = new $className;
 
 		$filters = $reportPlugin->displayFilters();
 
