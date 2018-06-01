@@ -31,7 +31,7 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!isset($reportName))
 		{
-			ApiError::raiseError(500, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
+			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
 		}
 
 		$reportFilters  = ($formData->get('filters'))?$formData->get('filters'):[];
@@ -42,7 +42,7 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!class_exists($className))
 		{
-			ApiError::raiseError(500, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
+			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
 		}
 
 		// Load language files
@@ -61,7 +61,7 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!empty($errors))
 		{
-			ApiError::raiseError(500, $errors[0], 'APIValidationException');
+			ApiError::raiseError(400, $errors[0], 'APIValidationException');
 		}
 
 		if (!empty($reportCols))
