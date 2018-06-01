@@ -33,7 +33,8 @@ class ReportsApiResourceFilters extends ApiResource
 		{
 			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
 		}
-
+		
+		// Make object of the tjreports plugin to load filters for
 		JLoader::import('plugins.tjreports.' . $reportName . "." . $reportName, JPATH_SITE);
 		$className = 'TjreportsModel' . ucfirst($reportName);
 
@@ -41,10 +42,9 @@ class ReportsApiResourceFilters extends ApiResource
 		{
 			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
 		}
-
+	
 		$reportPlugin = new $className;
-
-		$filters = $reportPlugin->displayFilters();
+		$filters      = $reportPlugin->displayFilters();
 
 		$this->plugin->setResponse($filters);
 	}
