@@ -35,6 +35,7 @@ class ReportsApiResourceFilters extends ApiResource
 		}
 
 		$lang = JFactory::getLanguage();
+		//load default joomla language file
 		$lang->load('', JPATH_ADMINISTRATOR, 'en-GB', true);
 
 		// Make object of the tjreports plugin to load filters for
