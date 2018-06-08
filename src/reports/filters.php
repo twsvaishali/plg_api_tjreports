@@ -35,6 +35,7 @@ class ReportsApiResourceFilters extends ApiResource
 		}
 
 		$lang = JFactory::getLanguage();
+		//load default joomla language file
 		$lang->load('', JPATH_ADMINISTRATOR, 'en-GB', true);
 
 		// Make object of the tjreports plugin to load filters for
@@ -47,8 +48,14 @@ class ReportsApiResourceFilters extends ApiResource
 		}
 
 		$reportPlugin = new $className;
-		$filters      = $reportPlugin->displayFilters();
 
-		$this->plugin->setResponse($filters);
+		$filters = $reportPlugin->displayFilters();
+		$filter_array = [];
+		foreach ($filters[0] as $key => $value) {
+			$value['name'] = $key;
+			$filter_array[] = $value;
+		}
+
+		$this->plugin->setResponse($filter_array);
 	}
 }
