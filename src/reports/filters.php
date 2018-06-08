@@ -50,12 +50,12 @@ class ReportsApiResourceFilters extends ApiResource
 		$reportPlugin = new $className;
 
 		$filters = $reportPlugin->displayFilters();
-
+		$filter_array = [];
 		foreach ($filters[0] as $key => $value) {
 			$value['name'] = $key;
-			$filters[0][$key] = $value;
+			$filter_array[] = $value;
 		}
 
-		$this->plugin->setResponse($filters);
+		$this->plugin->setResponse($filter_array);
 	}
 }
