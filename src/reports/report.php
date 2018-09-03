@@ -58,12 +58,14 @@ class ReportsApiResourceReport extends ApiResource
 		$lang->load('plg_tjreports_' . $reportName, JPATH_SITE . "/plugins/tjreports/" . $reportName, 'en-GB', true);
 
 		// Get filters and cols
+		$reportId = $reportPlugin->getDefaultReport($reportName);
 		$reportFilters = ($formData->get('filters')) ? $formData->get('filters') : [];
 		$reportCols    = ($formData->get('colToshow')) ? $formData->get('colToshow') : [];
 		
 		$reportPlugin->setState('filters', $reportFilters);
 		$reportPlugin->setState('colToshow', $reportCols);
-		
+		$reportPlugin->setState('reportId', $reportId);
+
 		// Get results and errors if any
 		$report = $reportPlugin->getItems();
 		$errors = $reportPlugin->getTJRMessages();
