@@ -61,7 +61,10 @@ class ReportsApiResourceReport extends ApiResource
 		$reportId = $reportPlugin->getDefaultReport($reportName);
 		$reportFilters = ($formData->get('filters')) ? $formData->get('filters') : [];
 		$reportCols    = ($formData->get('colToshow')) ? $formData->get('colToshow') : [];
-		
+
+		// Set reportId in input
+		$app->input->set('reportId', $reportId);
+
 		$reportPlugin->setState('filters', $reportFilters);
 		$reportPlugin->setState('colToshow', $reportCols);
 		$reportPlugin->setState('reportId', $reportId);
