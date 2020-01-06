@@ -41,7 +41,7 @@ class ReportsApiResourceReport extends ApiResource
 		}
 
 		// Create object of tjreports plugin class
-		
+
 		JLoader::import('plugins.tjreports.' . $reportName . "." . $reportName, JPATH_SITE);
 		$className = 'TjreportsModel' . ucfirst($reportName);
 
@@ -51,7 +51,7 @@ class ReportsApiResourceReport extends ApiResource
 		}
 
 		$reportPlugin = new $className;
-		
+
 		// Load language files
 		$lang = JFactory::getLanguage();
 		$lang->load('com_tjreports', JPATH_ADMINISTRATOR, 'en-GB', true);
@@ -95,6 +95,7 @@ class ReportsApiResourceReport extends ApiResource
 			}
 		}
 
+		$report[] = $reportPlugin->getTotal();
 		$this->plugin->setResponse($report);
 	}
 }

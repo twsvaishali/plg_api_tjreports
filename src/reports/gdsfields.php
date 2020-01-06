@@ -1,4 +1,4 @@
-﻿ <?php
+﻿<?php
 /**
  * @package      Tjreports
  * @subpackage   com_api
@@ -15,12 +15,12 @@ defined('_JEXEC') or die;
  * Tjreports API Gs fields class
  * This is used to get the fields for the Google studio connector
  *
- * @since  1.0.0
+ * @since  1.1.0
  */
-class ReportsApiResourceGsfields extends ApiResource
+class ReportsApiResourceGdsfields extends ApiResource
 {
 	/**
-	 * Function get filters data
+	 * Function get fields
 	 *
 	 * @return boolean
 	 */
