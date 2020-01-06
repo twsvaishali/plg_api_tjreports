@@ -27,7 +27,6 @@ class ReportsApiResourceGdsreports extends ApiResource
 	{
 		$app        = JFactory::getApplication();
 		$jinput     = $app->input;
-		$formData   = $jinput->post;
 
 		// Create object of tjreports plugin class
 		JLoader::import('components.com_tjreports.models.reports', JPATH_SITE);
