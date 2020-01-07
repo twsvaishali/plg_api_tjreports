@@ -52,7 +52,7 @@ class ReportsApiResourceGdsfields extends ApiResource
 		$reportPlugin = new $className;
 
 		// If plugin does not have getGoogleDsFields throw error
-		if (!method_exists($reportPlugin, 'getGoogleDsFields'))
+		if (!method_exists($reportPlugin, 'getGDSFields'))
 		{
 			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NO_GOOGLESTUDIO_SUPPORT'), 'APIValidationException');
 		}
