@@ -95,7 +95,7 @@ class ReportsApiResourceReport extends ApiResource
 			}
 		}
 
-		$report[] = $reportPlugin->getTotal();
+		$this->plugin->setCustomAttribute("total", $reportPlugin->getTotal());
 		$this->plugin->setResponse($report);
 	}
 }
