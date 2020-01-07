@@ -10,6 +10,7 @@
 
 // No direct access.
 defined('_JEXEC') or die;
+use Joomla\CMS\Factory;
 
 /**
  * Tjreports API to get the tjreports plugin those support Google studio connector
@@ -25,7 +26,7 @@ class ReportsApiResourceGdsreports extends ApiResource
 	 */
 	public function get()
 	{
-		$app        = JFactory::getApplication();
+		$app        = Factory::getApplication();
 		$jinput     = $app->input;
 
 		// Create object of tjreports plugin class

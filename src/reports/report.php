@@ -10,6 +10,8 @@
 
 // No direct access.
 defined('_JEXEC') or die;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * Tjreports API report class
@@ -25,7 +27,7 @@ class ReportsApiResourceReport extends ApiResource
 	 */
 	public function post()
 	{
-		$app        = JFactory::getApplication();
+		$app        = Factory::getApplication();
 		$jinput     = $app->input;
 		$formData   = $jinput->post;
 		$reportName = $app->input->getString('id');
@@ -37,7 +39,7 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!isset($reportName))
 		{
-			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
+			ApiError::raiseError(400, Text::_('PLG_API_REPORTS_REPORT_NAME_MISSSING'), 'APIValidationException');
 		}
 
 		// Create object of tjreports plugin class
@@ -47,13 +49,13 @@ class ReportsApiResourceReport extends ApiResource
 
 		if (!class_exists($className))
 		{
-			ApiError::raiseError(400, JText::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
+			ApiError::raiseError(400, Text::_('PLG_API_REPORTS_REPORT_NAME_INVALID'), 'APIValidationException');
 		}
 
 		$reportPlugin = new $className;
 
 		// Load language files
-		$lang = JFactory::getLanguage();
+		$lang = Factory::getLanguage();
 		$lang->load('com_tjreports', JPATH_ADMINISTRATOR, 'en-GB', true);
 		$lang->load('plg_tjreports_' . $reportName, JPATH_SITE . "/plugins/tjreports/" . $reportName, 'en-GB', true);
 
