@@ -62,7 +62,7 @@ class ReportsApiResourceGdsfields extends ApiResource
 		$lang->load('com_tjreports', JPATH_ADMINISTRATOR, 'en-GB', true);
 		$lang->load('plg_tjreports_' . $reportName, JPATH_SITE . "/plugins/tjreports/" . $reportName, 'en-GB', true);
 
-		$fields = $reportPlugin->getGoogleDsFields();
+		$fields = $reportPlugin->getGDSFields();
 		$this->plugin->setResponse($fields);
 	}
 }
