@@ -37,7 +37,7 @@ class ReportsApiResourceGdsreports extends ApiResource
 		{
 			$pluginModel = $reportModel->getPluginModel($report['plugin']);
 
-			if (method_exists($pluginModel, 'getGoogleDsFields'))
+			if (method_exists($pluginModel, 'getGDSFields'))
 			{
 				$reportsArray[] = $report;
 			}
